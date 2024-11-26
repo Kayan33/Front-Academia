@@ -35,6 +35,8 @@ export default function AuthProvider({children}){
 
     }
 
+    
+
     return(
 
         <AutenticadoContexto.Provider value={({autenticado, loginEntrada})}>
