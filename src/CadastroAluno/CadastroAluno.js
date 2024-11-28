@@ -5,7 +5,7 @@ export default function CadastroAluno(){
 
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [senha, setSenha] = useState('');
 
     async function cadastroAluno(e){
 
@@ -17,7 +17,7 @@ export default function CadastroAluno(){
 
                 nome,
                 email,
-                password
+                senha
             });
 
             alert(resposta.data.dados);
@@ -54,8 +54,8 @@ export default function CadastroAluno(){
                     <label>Senha:
                             <input type="password"
                             placeholder="Senha"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)} />
+                            value={senha}
+                            onChange={(e) => setSenha(e.target.value)} />
                     </label>
 
                     <button type='Submit'>Cadastrar</button>

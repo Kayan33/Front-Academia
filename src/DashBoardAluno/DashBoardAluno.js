@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import apiLocal from '../Api/apiLocal';
 
-export default function DashBoard() {
+export default function DashBoardAluno() {
     const [dadosUsuarios, setDadosUsuarios] = useState([]);
 
     const iToken = localStorage.getItem('@token');
@@ -31,20 +31,20 @@ export default function DashBoard() {
 
     return (
         <div>
-            <h1>Página de DashBoard</h1>
+            <h1>Página de DashBoardAluno</h1>
 
             <h3>{nome} está logado</h3>
 
             {dadosUsuarios.map((treino) => (
                 <div key={treino.id}>
                     <h1>{treino.nome_treino}</h1>
-                    
+
 
 
                     <div>
                         <h3>Rotinas:</h3>
                         {treino.rotinas && treino.rotinas.length > 0 ? (
-                            treino.rotinas.map((rotina) => (
+                            treino.rotinas.mafp((rotina) => (
                                 <div key={rotina.id}>
                                     <p>Repetições: {rotina.repeticao}</p>
                                     <p>Séries: {rotina.series}</p>
