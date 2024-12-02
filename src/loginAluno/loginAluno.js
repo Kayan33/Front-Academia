@@ -11,6 +11,8 @@ export default function LoginAluno(){
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
+    const Itipo = localStorage.getItem('@tipo');
+    const tipo = JSON.parse(Itipo);
 
     async function dadosLogin(e){
 
@@ -20,6 +22,11 @@ export default function LoginAluno(){
 
             alert('Preencha todos os campos!');
             return 
+        }
+
+        if (tipo === "aluno") {
+            alert('Seu login já está vinculado como personal. Use outro login ou entre em contato com o suporte.');
+            return;
         }
 
         try {

@@ -9,6 +9,9 @@ export default function LoginPersonal() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
+  const Itipo = localStorage.getItem('@tipo');
+  const tipo = JSON.parse(Itipo);
+
 
   const navigate = useNavigate()
   async function dadosLogin(e) {
@@ -17,6 +20,11 @@ export default function LoginPersonal() {
       alert('Preencha todos os campos!')
       return
     }
+
+    if (tipo === "personal") {
+      alert('Seu login já está vinculado como aluno. Use outro login ou entre em contato com o suporte.');
+      return;
+  }
     try {
       await loginEntrada(email, senha)
       navigate('/DashBoardPersonal')
@@ -48,7 +56,7 @@ export default function LoginPersonal() {
 
         <button type="Submit">Enviar</button>
       </form>
-      <p>Para se cadastrar clique <Link to='/CadastrarAluno'>Aqui</Link></p>
+      <p>Para se cadastrar clique <Link to='/CadastroPersonal'>Aqui</Link></p>
     </div>
   )
 }
