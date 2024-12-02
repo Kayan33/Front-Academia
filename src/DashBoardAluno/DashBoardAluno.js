@@ -28,6 +28,7 @@ export default function DashBoardAluno() {
 
         consultarDadosUsuarios();
     }, []);
+console.log(dadosUsuarios);
 
     return (
         <div>
