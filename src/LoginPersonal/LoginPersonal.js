@@ -14,6 +14,7 @@ export default function LoginPersonal() {
 
 
   const navigate = useNavigate()
+  
   async function dadosLogin(e) {
     e.preventDefault()
     if (!email || !senha) {
@@ -21,10 +22,13 @@ export default function LoginPersonal() {
       return
     }
 
+
+
     if (tipo === "personal") {
+      alert(tipo)
+    } else {
       alert('Seu login já está vinculado como aluno. Use outro login ou entre em contato com o suporte.');
-      return;
-  }
+    }
     try {
       await loginEntrada(email, senha)
       navigate('/DashBoardPersonal')
@@ -32,6 +36,7 @@ export default function LoginPersonal() {
 
     }
   }
+
 
   return (
     <div className='conteinerInicioGeral'>

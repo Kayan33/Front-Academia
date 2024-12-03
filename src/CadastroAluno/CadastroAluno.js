@@ -29,7 +29,7 @@ export default function CadastroAluno() {
                 data_nascimento
 
             });
-
+            alert('Cadastrado')
             
             navigate("/LoginAluno")
         } catch (err) {

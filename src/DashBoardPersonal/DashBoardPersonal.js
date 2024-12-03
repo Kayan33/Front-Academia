@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
+import { toast } from 'react-toastify'
 import apiLocal from '../Api/apiLocal';
+import { Link } from 'react-router-dom';
 
 export default function DashBoardPersonal() {
   const [dadosUsuarios, setDadosUsuarios] = useState([]);
@@ -36,26 +37,15 @@ export default function DashBoardPersonal() {
     consultarDadosUsuarios();
   }, []);
 
-  async function cadastroAluno(e) {
-
+  async function apagarUsuarios() {
     try {
-
-      e.preventDefault();
-
-      await apiLocal.post('/CadastrarPersonal', {
-        aluno
-
-      });
-
-      alert("cadastrado")
-
-
+      await apiLocal.delete(`/ApagarPersonal/${ID}`)
+      alert('Registro Apagado com Sucesso', {
+          
+      })
     } catch (err) {
-
-      alert('Erro ao comunicar com o Backend')
-
+          alert('Erro ao se comunicar com Back-End')
     }
-    console.log(aluno);
   }
 
   return (
@@ -63,20 +53,7 @@ export default function DashBoardPersonal() {
       <h1>Página de DashBoardPersonal</h1>
 
 
-      <form onSubmit={cadastroAluno}>
 
-        <label>cadastrar aluno:
-          <input type="text"
-            placeholder="ID por enquanto"
-            value={aluno}
-            onChange={(e) => setAluno(e.target.value)} />
-
-        </label>
-
-
-        <button type='Submit'>Cadastrar</button>
-
-      </form>
 
       {dadosUsuarios.map((personal) => (
         <div key={personal.id}>
@@ -91,6 +68,8 @@ export default function DashBoardPersonal() {
           ))}
         </div>
       ))}
+      <Link to={`/EditarPersonal/${ID}`}>Editar</Link>
+      <button type='submit' onClick={() => apagarUsuarios(ID)}>apagar</button>
 
 
 

@@ -1,9 +1,11 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import EditarUsuarios from '../EditarUsuarios/index';
+
 import DashBoardPersonal from '../DashBoardPersonal/DashBoardPersonal';
 import DashBoardAluno from '../DashBoardAluno/DashBoardAluno';
+import EditarAluno from '../EditarAluno/indexAluno';
+import EditarPersonal from '../EditarPersonal/indexPersonal';
 
 export default function Autenticado() {
     return (
@@ -11,7 +13,8 @@ export default function Autenticado() {
             <Routes>
                 <Route path='/' element={< DashBoardAluno />} />
                 <Route path='/DashBoardPersonal' element={< DashBoardPersonal />} />
-                <Route path='/EditarUsuarios/:id' element={<EditarUsuarios/>} />
+                <Route path='/EditarAluno/:id' element={<EditarAluno/>} />
+                <Route path='/EditarPersonal/:id' element={<EditarPersonal/>} />
                 
                 <Route path='*' element={< DashBoardAluno />} />
             </Routes>

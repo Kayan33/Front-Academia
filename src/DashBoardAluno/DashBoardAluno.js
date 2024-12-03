@@ -9,6 +9,9 @@ export default function DashBoardAluno() {
     const iToken = localStorage.getItem('@token');
     const token = JSON.parse(iToken);
 
+    const Iid = localStorage.getItem('@id');
+    const ID = JSON.parse(Iid);
+
     const nome = localStorage.getItem('@nome')
 
     useEffect(() => {
@@ -28,7 +31,17 @@ export default function DashBoardAluno() {
 
         consultarDadosUsuarios();
     }, []);
-console.log(dadosUsuarios);
+
+    async function apagarUsuarios() {
+        try {
+            await apiLocal.delete(`/ApagarAluno/${ID}`)
+            alert('Registro Apagado com Sucesso', {
+
+            })
+        } catch (err) {
+            alert('Erro ao se comunicar com Back-End')
+        }
+    }
 
     return (
         <div>
@@ -86,7 +99,8 @@ console.log(dadosUsuarios);
                 </div>
             ))}
 
-
+            <Link to={`/EditarAluno/${ID}`}>Editar</Link>
+            <button type='submit' onClick={() => apagarUsuarios(ID)}>apagar</button>
         </div>
     );
 }
