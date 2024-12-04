@@ -9,33 +9,36 @@ export default function LoginPersonal() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const Itipo = localStorage.getItem('@tipo');
-  const tipo = JSON.parse(Itipo);
 
 
-  const navigate = useNavigate()
-  
+
+  const navigate = useNavigate();
+
   async function dadosLogin(e) {
-    e.preventDefault()
-    if (!email || !senha) {
-      alert('Preencha todos os campos!')
-      return
-    }
-
-
-
-    if (tipo === "personal") {
-      alert(tipo)
-    } else {
-      alert('Seu login já está vinculado como aluno. Use outro login ou entre em contato com o suporte.');
-    }
-    try {
-      await loginEntrada(email, senha)
-      navigate('/DashBoardPersonal')
-    } catch (err) {
-
-    }
+      e.preventDefault();
+  
+      if (!email || !senha) {
+          alert('Preencha todos os campos!');
+          return;
+      }
+  
+      try {
+          const data = await loginEntrada(email, senha);
+          
+          if (data.tipo === "personal") {
+              navigate('/DashBoardPersonal');
+              console.log(data.tipo);
+          } else if (data.tipo === "aluno") {
+              alert('Seu login é do tipo "Aluno".');
+              navigate('/LoginAluno');
+          } else {
+              alert('Tipo de login não reconhecido!');
+          }
+      } catch (err) {
+          console.error('Erro ao fazer login:', err);
+      }
   }
+  
 
 
   return (

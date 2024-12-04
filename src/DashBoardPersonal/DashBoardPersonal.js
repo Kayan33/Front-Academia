@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { toast } from 'react-toastify'
 import apiLocal from '../Api/apiLocal';
 import { Link } from 'react-router-dom';
 
 export default function DashBoardPersonal() {
   const [dadosUsuarios, setDadosUsuarios] = useState([]);
-  const [aluno, setAluno] = useState([]);
+
 
   const iToken = localStorage.getItem('@token');
   const token = JSON.parse(iToken);

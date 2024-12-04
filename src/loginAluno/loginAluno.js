@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AutenticadoContexto } from '../Contexts/authContexts';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -10,34 +10,31 @@ export default function LoginAluno() {
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-
-    const Itipo = localStorage.getItem('@tipo');
-    const tipo = JSON.parse(Itipo);
+   
+    const navigate = useNavigate();
 
     async function dadosLogin(e) {
-
         e.preventDefault();
 
         if (!email || !senha) {
-
             alert('Preencha todos os campos!');
-            return
+            return;
         }
 
-        if (tipo === "aluno") {
-            return
-          } else {
-            alert('Seu login já está vinculado como aluno. Use outro login ou entre em contato com o suporte.');
-          }
-
         try {
+            const data = await loginEntrada(email, senha);
 
-            await loginEntrada(email, senha);
-
+            if (data.tipo === "aluno") {
+                navigate('/DashBoardAluno');
+                console.log(data.tipo);
+            } else if (data.tipo === "personal") {
+                alert('Seu login é do tipo "personal".');
+                navigate('/LoginPersonal');
+            } else {
+                alert('Tipo de login não reconhecido!');
+            }
         } catch (err) {
-
-
-
+            console.error('Erro ao fazer login:', err);
         }
     }
 

@@ -11,12 +11,11 @@ export default function Autenticado() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={< DashBoardAluno />} />
+                <Route path='/DashBoardAluno' element={< DashBoardAluno />} />
                 <Route path='/DashBoardPersonal' element={< DashBoardPersonal />} />
                 <Route path='/EditarAluno/:id' element={<EditarAluno/>} />
                 <Route path='/EditarPersonal/:id' element={<EditarPersonal/>} />
                 
-                <Route path='*' element={< DashBoardAluno />} />
             </Routes>
         </BrowserRouter>
     )

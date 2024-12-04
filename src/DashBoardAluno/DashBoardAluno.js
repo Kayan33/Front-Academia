@@ -49,7 +49,7 @@ export default function DashBoardAluno() {
 
             <h3>{nome} está logado</h3>
 
-            {dadosUsuarios.map((treino) => (
+            {/* {dadosUsuarios.map((treino) => (
                 <div key={treino.id}>
                     <h1>{treino.nome_treino}</h1>
 
@@ -97,7 +97,7 @@ export default function DashBoardAluno() {
                         )}
                     </div>
                 </div>
-            ))}
+            ))} */}
 
             <Link to={`/EditarAluno/${ID}`}>Editar</Link>
             <button type='submit' onClick={() => apagarUsuarios(ID)}>apagar</button>

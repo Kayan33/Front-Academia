@@ -4,7 +4,7 @@ import apiLocal from '../Api/apiLocal';
 
 export default function EditarPersonal() {
 
-    const { id } = useParams(); 
+    const { id } = useParams();
     const [nome, setNome] = useState('');
     const [telefone, setTelefone] = useState('');
     const [email, setEmail] = useState('');
@@ -18,20 +18,21 @@ export default function EditarPersonal() {
         async function consultarDados() {
             try {
                 const resposta = await apiLocal.post(`/ConsultarPersonalUnico/${id}`);
-                
-               
-                
+
+
+
+
+
+                setNome(resposta.data[0].nome);
+                setTelefone(resposta.data[0].telefone);
+                setEmail(resposta.data[0].email);
+                setCREF(resposta.data[0].CREF);
+                setSexo(resposta.data[0].sexo);
+                setAluno(resposta.data[0]?.aluno[0]?.id || "");
 
                 
-                setNome(resposta.data[0].nome );  
-                setTelefone(resposta.data[0].telefone ); 
-                setEmail(resposta.data[0].email ); 
-                setCREF(resposta.data[0].CREF ); 
-                setSexo(resposta.data[0].sexo ); 
-                setAluno(resposta.data[0].aluno[0].id ); 
-console.log(resposta);
 
-                
+
             } catch (err) {
                 console.error("Erro ao carregar os dados:", err);
                 alert("Erro ao carregar os dados do usuário");
@@ -41,7 +42,7 @@ console.log(resposta);
         consultarDados();
     }, [id]);
 
-    
+
     async function enviarAlteracao(e) {
         e.preventDefault();
 
@@ -56,7 +57,7 @@ console.log(resposta);
             });
 
             alert("Atualizado com sucesso!");
-            navigate("/DashBoardPersonal"); 
+            navigate("/DashBoardPersonal");
         } catch (err) {
             console.error("Erro ao atualizar os dados:", err);
             alert("Erro ao atualizar os dados.");
